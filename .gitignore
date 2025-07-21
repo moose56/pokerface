@@ -845,3 +845,4 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,jetbrains+all,visualstudiocode,visualstudio,node,svelte
 
 .vercel/
+/src/generated/prisma
