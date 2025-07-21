@@ -1,5 +1,5 @@
 <script>
-	import Header from './Header.svelte';
+	import Header from '../components/Header.svelte';
 	import '../app.css';
 
 	/** @type {{children: import('svelte').Snippet}} */
@@ -15,7 +15,7 @@
 
 	<footer>
 		<p>
-			visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to learn about SvelteKit
+			pokerface
 		</p>
 	</footer>
 </div>
