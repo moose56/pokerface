@@ -16,17 +16,87 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id       Int       @id @default(autoincrement())
+  googleId String    @unique
+  email    String    @unique
+  name     String
+  Session  Session[]
+
+  @@index([googleId])
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id])
+model Session {
+  id        String @id
+  userId    Int
+  expiresAt Int
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+//
+// model Post {
+//   id        Int     @id @default(autoincrement())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   authorId  Int
+//   author    User    @relation(fields: [authorId], references: [id])
+//
+//   @@index([authorId])
+// }
+
+// model Player {
+//   id    Int              @id @default(autoincrement())
+//   name  String?
+//   games PlayersOnGames[]
+//   Score Score[]
+// }
+//
+// model Game {
+//   id      Int              @id @default(autoincrement())
+//   slug    String           @unique
+//   hostId  Int
+//   rounds  Round[]
+//   players PlayersOnGames[]
+// }
+//
+// model PlayersOnGames {
+//   player   Player  @relation(fields: [playerId], references: [id])
+//   playerId Int
+//   game     Game    @relation(fields: [gameId], references: [id])
+//   gameId   Int
+//   isHost   Boolean
+//
+//   @@id([playerId, gameId])
+// }
+//
+// model Round {
+//   id         Int     @id @default(autoincrement())
+//   descripton String
+//   scale      String
+//   scores     Score[]
+//   game       Game    @relation(fields: [gameId], references: [id])
+//   gameId     Int
+// }
+//
+// model Score {
+//   id       Int    @id @default(autoincrement())
+//   player   Player @relation(fields: [playerId], references: [id])
+//   playerId Int
+//   round    Round  @relation(fields: [roundId], references: [id])
+//   roundId  Int
+//   score    String
+// }
+
+model Game {
+  id              Int      @id @default(autoincrement())
+  code            String   @unique
+  owner           Int
+  document        Json
+  createdDate     DateTime
+  lastUpdatedDate DateTime
+
+  @@index([owner])
+  @@index([createdDate])
+  @@index([lastUpdatedDate])
 }

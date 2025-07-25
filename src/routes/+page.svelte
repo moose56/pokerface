@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
+
 	let { data } = $props();
 </script>
 
@@ -7,18 +9,8 @@
 	<meta name="description" content="Pokerface - planning poker app" />
 </svelte:head>
 
-<section>
-	<h1>Pokerface</h1>
-
-	<button>New</button>
-	<button>Play</button>
-
-	{#each data.users as user}
-		<h2>{user.name}</h2>
-		{#each user.posts as post}
-			<ul>
-				<li><a href={post.content}>{post.title}</a></li>
-			</ul>
-		{/each}
-	{/each}
-</section>
+<h1>Hi, {data.user.name}!</h1>
+<p>Email: {data.user.email}</p>
+<form method="post" use:enhance>
+	<button>Sign out</button>
+</form>
